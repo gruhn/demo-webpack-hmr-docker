@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  demo:
+    build: ./
+    working_dir: /demo
+    # mounting in sub directory so cache "node_modules" is not created on host
+    # machine but remains hidden in container file system.
+    volumes:
+      - ./src:/demo/src
+    ports:
+      - "8080:8080"
+    command: ["vue", "serve", "src/App.vue"]
